@@ -1,0 +1,6 @@
+jsonlines==3.1.0
+numpy==1.21.5
+openai==1.10.0
+pandas==1.4.4
+Requests==2.31.0
+tenacity==8.0.1

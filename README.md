@@ -134,7 +134,7 @@ nohup python -u call_openai_api_gpt4_eval.py \
     --limit $LIMIT >> $LOG_FILE &
 ```
 
-Then, run `run_gpt4_eval.sh` and the output file will appear in the `eval/output` directory. You may need to rerun your scoring if there are failure cases.
+Then, run `run_gpt4_eval.sh` and the output file will appear in the `eval/output` directory. You may need to rerun your scoring if there are failure cases. The estimated budget for one round evaluation with model responses in 8,192 sequence length is about 30 USD for calling `gpt-4-1106-preview` with OpenAI API.
 
 Use the `scoring.py` script to aggregate scoring reviews and present final scores:
 

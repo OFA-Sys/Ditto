@@ -16,17 +16,17 @@ This research project focuses on empowering role-play capabilities of large lang
 
 ## What is Ditto
 
-Considerable efforts have been invested in augmenting the role-playing proficiency of open-source large language models (LLMs) by emulating proprietary counterparts. Nevertheless, we posit that LLMs inherently harbor role-play capabilities, owing to the extensive knowledge of characters and potential dialogues ingrained in their vast training corpora. Thus, in this study, we introduce DITTO, a self-alignment method for role-play. DITTO capitalizes on character knowledge, encouraging an instruction-following LLM to simulate role-play dialogues as a variant of reading comprehension. This method creates a role-play training set comprising 4000 characters, surpassing the scale of currently available datasets by tenfold regarding the number of roles. Subsequently, we fine-tune the LLM using this self-generated dataset to augment its role-playing capabilities. Upon evaluating our meticulously constructed and reproducible role-play benchmark and the roleplay subset of MT-Bench, DITTO in various parameter scales consistently maintains a consistent role identity and provides accurate role-specific knowledge in multi-turn role-play conversations. Notably, it outperforms all open-source role-play baselines, showcasing performance levels comparable to advanced proprietary chatbots. Furthermore, we present the first comprehensive cross-supervision alignment experiment in the role-play domain, revealing that the intrinsic capabilities of LLMs confine the knowledge within role-play. Meanwhile, the role-play styles can be easily acquired with the guidance of smaller models. More information and results can be found in [Paper](https://arxiv.org/pdf/2401.12474.pdf).
+Considerable efforts have been invested in augmenting the role-playing proficiency of open-source large language models (LLMs) by emulating proprietary counterparts. Nevertheless, we posit that LLMs inherently harbor role-play capabilities, owing to the extensive knowledge of characters and potential dialogues ingrained in their vast training corpora. Thus, in this study, we introduce DITTO, a self-alignment method for role-play. DITTO capitalizes on character knowledge, encouraging an instruction-following LLM to simulate role-play dialogues as a variant of reading comprehension. This method creates a role-play training set comprising 4000 characters, surpassing the scale of currently available datasets by tenfold regarding the number of roles. Subsequently, we fine-tune the LLM using this self-generated dataset to augment its role-playing capabilities. Upon evaluating our meticulously constructed and reproducible role-play benchmark and the roleplay subset of MT-Bench, DITTO, in various parameter scales, consistently maintains a consistent role identity and provides accurate role-specific knowledge in multi-turn role-play conversations. Notably, it outperforms all open-source role-play baselines, showcasing performance levels comparable to advanced proprietary chatbots. Furthermore, we present the first comprehensive cross-supervision alignment experiment in the role-play domain, revealing that the intrinsic capabilities of LLMs confine the knowledge within role-play. Meanwhile, the role-play styles can be easily acquired with the guidance of smaller models. More information and results can be found in [Paper](https://arxiv.org/pdf/2401.12474.pdf).
 
 ![image](./figs/main.png)
 
 ## WikiRoleEval
 
-We present an automatic, reproducibale evaluation for the role-play capabilities of LLMs, as the efficient evaluation for open-ended problems, such as role-play, is significantly understudied. This work proposes an objective assessment instead of previous preference annotations to evaluate basic role-play capabilities. We first design three core metrics for role-play and implement a trustworthy evaluation recipe for each based on “LLMs as Judges”.
+We present an automatic, reproducible evaluation for the role-play capabilities of LLMs, as the efficient evaluation for open-ended problems, such as role-play, is significantly understudied. This work proposes an objective assessment instead of previous preference annotations to evaluate basic role-play capabilities. We first design three core metrics for role-play and implement a trustworthy evaluation recipe for each based on “LLMs as Judges.”
 
 ### How this evaluation works
 
-Role-play LLMs are expected to have consistent self-awareness, rich rolespecific knowledge, and precise knowledge boundary awareness. Therefore, we design three objective metrics for these three properties respectively:
+Role-play LLMs are expected to have consistent self-awareness, rich role-specific knowledge, and precise knowledge boundary awareness. Therefore, we design three objective metrics for these three properties respectively:
 
 ![image](./figs/evaluation.png)
 
@@ -38,17 +38,17 @@ Role-play LLMs are expected to have consistent self-awareness, rich rolespecific
 
 ### When to use and not use this evaluation
 
-- **Use**: An efficient, reproducible, objective evaluation of role-play capabilities is preferred. The evaluation metrics are focusing on one or more in consistent role identity, accurate role-related knowledge, and unknown question rejection.
+- **Use**: An efficient, reproducible, objective evaluation of role-play capabilities is preferred. The evaluation metrics focus on one or more consistent role identities, accurate role-related knowledge, and unknown question rejection.
 
-- **Not Use**: As an LLM-as-Judge evaluation, WikiRoleEval shares shortages like any other LLM-as-Judge evaluation by showing potential biases and uncertainty in evaluation. We minimize them by carefully designing the metrics and evaluation formats. However, if you prefer precise human preference on role-play, requiring more vivid features related to emotions and attration that are beyong our metrics, WikiRoleEval may not be a better choice compared with human annotation.
+- **Not Use**: As an LLM-as-Judge evaluation, WikiRoleEval shares shortages like any other LLM-as-Judge evaluation by showing potential biases and uncertainty in evaluation. We minimize them by carefully designing the metrics and evaluation formats. However, suppose you prefer precise human preference on role-play, requiring more vivid features related to emotions and attraction that are beyond our metrics. In that case, WikiRoleEval may not be a better choice compared with human annotation.
 
 ### How to run
 
-This repo requires `git-lfs` to download evaluation data and results. Please install `git-lfs` first by running `git lfs install` or `sudo apt-get install git-lfs`, or other installing commands based on your OS. Then, simply run `pip install -r requirements.txt` to install python requirements.
+This repo requires `git-lfs` to download evaluation data and results. Please install `git-lfs` first by running `git lfs install` or `sudo apt-get install git-lfs`, or other installing commands based on your OS. Then, simply run `pip install -r requirements.txt` to install Python requirements.
 
-To attain the evaluation scores of WikiRoleEval, you need to first generate multi-turn responses according the input file. Then, please use the code to call OpenAI APIs for scoring.
+To attain the evaluation scores of WikiRoleEval, you need to first generate multi-turn responses according to the input file. Then, please use the code to call OpenAI APIs for scoring.
 
-The input file of our evaluation locates in `data/wiki_roleplay_multilingual_test_input_w_evidence.jsonl`, which contains both queries and meta information of each roles. The format of this input file is presented as followed:
+The input file of our evaluation is located in `data/wiki_roleplay_multilingual_test_input_w_evidence.jsonl`, which contains both queries and meta information of each role. The format of this input file is presented as follows:
 
 ```
 {
@@ -99,11 +99,11 @@ First, generate your responses following the system and prompts in `data/wiki_ro
 ]
 ```
 
-Here are some notice related to the response generation:
+Here are some notices related to the response generation:
 
-- To remain the consistency of our evaluation, please generate responses as the multi-turn utterence and strictly follow the order in the `prompts` field.
+- To maintain the consistency of our evaluation, please generate responses as the multi-turn utterance and strictly follow the order in the `prompts` field.
 
-- We evaluate our models and baselines with a 8,192 sequence length
+- We evaluate our models and baselines with an 8,192 sequence length
 
 - Please use the same role configuration in the field `system`. The default injection method for the Qwen series and the most proprietary APIs is putting this string into the system role before querying anything. However, some LLMs may not have system abilities. In that case, you can simply concatenate the role configuration with the first query in the multi-turn conversation. Furthermore, some role-play specific chatbots, such as Xingchen and CharacterGLM, may use a more complex role configuration including profiles of users, we simply modify our configuration without adding or removing any information to fit their requirements and simply use `user` and the name and profile of users.
 
@@ -121,7 +121,7 @@ You can refer to the following scripts for the generation of baselines:
 
 We use `gpt-4-1106-preview` as our LLM judger to provide evaluation scores. First, make sure each record of your record files contain neccessary meta information, such as `role_consist_cands`, `rejection labels`, and `evidence`, for scoring.
 
-Edit the configuration in `eval/run_gpt4_eval.sh` to link your result file by setting the `INPUT_FILE` path. We set temperature to `0.2` and query for `3` times, so that we can calculate an average score for each metric to reduce variance.
+Edit the configuration in `eval/run_gpt4_eval.sh` to link your result file by setting the `INPUT_FILE` path. We set the temperature to `0.2` and query for `3` times so that we can calculate an average score for each metric to reduce variance.
 
 ```
 nohup python -u call_openai_api_gpt4_eval.py \
@@ -152,7 +152,7 @@ ditto-qwen-72b         0.9      6.64      0.82        0.87      7.03      0.87  
 
 ### Contributions
 
-We encourage contributions by uploading your own prediction results of open-source or proprietary LLMs if they are not involved by our original results. Please simple opening a PR with the prediction file in `data/results` and your self-report scores. We will verify them and then upload the repo. Also, we will really appreciate if you would like to contribute new data or point out labeling mistakes in the test set. Please feel free to open issues to discuss anything about data quality.
+We encourage contributions. Please upload your prediction results of open-source or proprietary LLMs if they are not involved in our original results. Please simply open a PR with the prediction file in `data/results` and your self-report scores. We will verify them and then update the repo. Also, we would appreciate it if you would like to contribute new data or point out labeling mistakes in the test set. Please feel free to open issues to discuss anything about data quality.
 
 
 ## How to acquire role-play capabilities with Ditto

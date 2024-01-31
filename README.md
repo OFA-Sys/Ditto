@@ -4,7 +4,7 @@
 
 ----------
 
-This is a research project focusing on empowering large language models (LLMs) role-play capabilities by self-alignment. This repo involves OpenAI API and GPT-4-Turbo for evaluation purposes. All data and results are obtained and processed according to the respective data and API usage policy. *This repo contains generation outputs of LLMs that may only have a minimum safety alignment, so it will probably contain toxic and harmful contents.*
+This research project focuses on empowering role-play capabilities of large language models (LLMs) by self-alignment. This repo involves OpenAI API and GPT-4-Turbo for evaluation purposes. All data and results are obtained and processed according to the respective data and API usage policies. *This repo contains generation outputs of LLMs that may only have a minimum safety alignment, so it will probably contain toxic and harmful contents.*
 
 ----------
 

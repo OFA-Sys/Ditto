@@ -119,7 +119,7 @@ You can refer to the following scripts for the generation of baselines:
 
 #### Scoring
 
-We use `gpt-4-1106-preview` as our LLM judger to provide evaluation scores. First, make sure each record of your record files contain neccessary meta information, such as `role_consist_cands`, `rejection labels`, and `evidence`, for scoring.
+We use `gpt-4-1106-preview` as our LLM judger to provide evaluation scores. First, make sure each record of your record files contain necessary meta information, such as `role_consist_cands`, `rejection labels`, and `evidence`, for scoring.
 
 Edit the configuration in `eval/run_gpt4_eval.sh` to link your result file by setting the `INPUT_FILE` path. We set the temperature to `0.2` and query for `3` times so that we can calculate an average score for each metric to reduce variance.
 

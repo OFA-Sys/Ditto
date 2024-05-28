@@ -20,6 +20,10 @@ Considerable efforts have been invested in augmenting the role-playing proficien
 
 ![image](./figs/main.png)
 
+## Update in downloading
+
+If you are facing a LFS issue when downloading our data, please feel free to use this shared link [ditto data](http://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/lukeming.lkm/public/ditto_data.zip)
+
 ## WikiRoleEval
 
 We present an automatic, reproducible evaluation for the role-play capabilities of LLMs, as the efficient evaluation for open-ended problems, such as role-play, is significantly understudied. This work proposes an objective assessment instead of previous preference annotations to evaluate basic role-play capabilities. We first design three core metrics for role-play and implement a trustworthy evaluation recipe for each based on “LLMs as Judges.”
